@@ -1,0 +1,17 @@
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #9CA1CF;
+    padding: 0 5%;
+}
+
+header h1 {
+    color: white;
+}
+
+.login {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}

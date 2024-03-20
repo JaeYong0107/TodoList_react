@@ -1,0 +1,43 @@
+.todo-item-container {
+    width: 100%;
+    height: 271px;
+    background-color: #F8F8F8;
+    border-radius: 5%;
+    position: relative;
+    text-align: center;
+    line-height: 271px;
+}
+
+.deadline {
+    width: 237px;
+    height: 62px;
+    position: absolute;
+    background-color: #EEEDED;
+    border-radius: 5%;
+    top: 20px;
+    left: 15px;
+    line-height: 62px;
+}
+
+.todo-item-edit {
+    width: 56px;
+    height: 39px;
+    position: absolute;
+    top: 20px;
+    right: 12px;
+    background-color: #9CA1CF;
+    border-radius: 20%;
+    border: none;
+}
+
+.todo-item-progress {
+    width: 589px;
+    height: 42px;
+    position: absolute;
+    bottom: 10px;
+    left: 1vw;
+}
+
+.todo-item-progress::-webkit-progress-bar {
+    color: #9CA1CF;
+}

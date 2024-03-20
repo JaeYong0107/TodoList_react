@@ -1,0 +1,14 @@
+main {
+    display: flex;
+    flex-direction: row;
+}
+
+ul {
+    padding: 0;
+    list-style: none;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 618px 618px;
+    justify-content: center;
+    gap: 20px;
+}
