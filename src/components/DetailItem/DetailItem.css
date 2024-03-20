@@ -1,0 +1,34 @@
+.detail-item-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #ECECEC;
+    border-radius: 15px;
+    position: relative;
+}
+
+.x-close {
+    width: 0px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+.detial-check {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background-color: white;
+    border-radius: 25%;
+    border: none;
+}
+
+.detail-item-container:hover .x-close {
+    width: 40px;
+    height: 40px;
+}

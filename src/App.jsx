@@ -1,7 +1,8 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-import RootLayout from './pages/RootLayout';
-import Main from './pages/Main';
+import RootLayout from './pages/RootLayout.jsx';
+import Main from './pages/Main.jsx';
+import TodoDetail from './pages/TodoDetail.jsx';
 import './App.css'
 
 function App() {
@@ -10,7 +11,8 @@ function App() {
       path: '/',
       element: <RootLayout />,
       children: [
-        { index: true, element: <Main /> }
+        { index: true, element: <Main /> },
+        { path: 'detail', element: <TodoDetail /> }
       ]
     }
   ])
