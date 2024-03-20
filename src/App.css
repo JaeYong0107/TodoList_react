@@ -1,4 +1,7 @@
+/* Main Page */
+
 main {
+    height: 620px;
     display: flex;
     flex-direction: row;
 }
@@ -9,6 +12,18 @@ ul {
     width: 100%;
     display: grid;
     grid-template-columns: 618px 618px;
+    grid-template-rows: 271px;
     justify-content: center;
     gap: 20px;
 }
+
+.todo-item-list-container {
+    height: 100%;
+    overflow: scroll;
+}
+
+.todo-item-list-container::-webkit-scrollbar {
+    display: none;
+}
+
+/* Main Page 끝 */

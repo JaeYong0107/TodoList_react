@@ -1,4 +1,5 @@
 
+import SidebarItem from '../SidebarItem/SidebarItem';
 import './Sidebar.css';
 
 export default function Sidebar() {
@@ -6,7 +7,13 @@ export default function Sidebar() {
         <nav>
             <div className='todo-list-nav'>
                 <ul>
-                    <li></li>
+                    <li><SidebarItem /></li>
+                    <li><SidebarItem /></li>
+                    <li><SidebarItem /></li>
+                    <li><SidebarItem /></li>
+                    <li><SidebarItem /></li>
+                    <li><SidebarItem /></li>
+                    <li><SidebarItem /></li>
                 </ul>
             </div>
             <button className='nav-button'><img src='다음-icon.svg' /></button>

@@ -1,7 +1,20 @@
 nav {
     width: 256px;
-    height: 924px;
+    height: 100%;
+    position: relative;
+    border-right: 1px solid #8c8c8c;
+    overflow: scroll;
 }
+
+nav::-webkit-scrollbar {
+    display: none;
+}
+
+.todo-list-nav ul {
+    display: flex;
+    flex-direction: column;
+}
+
 
 .nav-button {
     width: 47px;
@@ -9,4 +22,7 @@ nav {
     background-color: #9CA1CF;
     border: none;
     border-radius: 0 10% 10% 0;
+    position: absolute;
+    right: -47px;
+    top: 25px
 }

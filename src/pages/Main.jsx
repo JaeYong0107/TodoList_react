@@ -5,12 +5,18 @@ export default function Main() {
     return (
         <main>
             <Sidebar />
-            <ul>
-                <li className="todo-item-list"><TodoItem /></li>
-                <li className="todo-item-list"><TodoItem /></li>
-                <li className="todo-item-list"><TodoItem /></li>
-                <li className="todo-item-list"><TodoItem /></li>
-            </ul>
+            <div className="todo-item-list-container">
+                <ul >
+                    <li className="todo-item-list"><TodoItem /></li>
+                    <li className="todo-item-list"><TodoItem /></li>
+                    <li className="todo-item-list"><TodoItem /></li>
+                    <li className="todo-item-list"><TodoItem /></li>
+                    <li className="todo-item-list"><TodoItem /></li>
+                    <li className="todo-item-list"><TodoItem /></li>
+                    <li className="todo-item-list"><TodoItem /></li>
+                    <li className="todo-item-list"><TodoItem /></li>
+                </ul>
+            </div>
         </main>
     )
 }

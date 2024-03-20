@@ -6,8 +6,12 @@ header {
     padding: 0 5%;
 }
 
-header h1 {
+header a {
+    font-size: 36px;
+    font-weight: 600;
     color: white;
+    text-decoration: none;
+    text-align: center;
 }
 
 .login {
