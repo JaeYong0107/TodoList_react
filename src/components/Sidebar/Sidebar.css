@@ -1,0 +1,12 @@
+nav {
+    width: 256px;
+    height: 924px;
+}
+
+.nav-button {
+    width: 47px;
+    height: 40px;
+    background-color: #9CA1CF;
+    border: none;
+    border-radius: 0 10% 10% 0;
+}
