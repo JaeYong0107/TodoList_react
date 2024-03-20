@@ -1,7 +1,7 @@
 /* Main Page */
 
 main {
-    height: 620px;
+    height: 89vh;
     display: flex;
     flex-direction: row;
 }

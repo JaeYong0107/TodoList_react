@@ -1,3 +1,4 @@
+import LoginModal from "../components/Login/LoginModal.jsx"
 import Sidebar from "../components/Sidebar/Sidebar.jsx"
 import TodoItem from "../components/TodoItem/TodoItem.jsx"
 
@@ -17,6 +18,7 @@ export default function Main() {
                     <li className="todo-item-list"><TodoItem /></li>
                 </ul>
             </div>
+            {/* <LoginModal /> */}
         </main>
     )
 }

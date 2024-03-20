@@ -7,7 +7,7 @@ export default function Header() {
         <header>
             <Link to='/'>Todo</Link>
             <div className="login">
-                <h2>Logout</h2>
+                <h2 >Login</h2>
                 <h2>Sign up</h2>
             </div>
         </header>

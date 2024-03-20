@@ -1,8 +1,8 @@
 .todo-item-container {
     width: 100%;
     height: 271px;
-    background-color: #F8F8F8;
-    border-radius: 5%;
+    background-color: #DDDDDD;
+    border-radius: 15px;
     position: relative;
     text-align: center;
     line-height: 271px;
@@ -26,7 +26,7 @@
     top: 20px;
     right: 12px;
     background-color: #9CA1CF;
-    border-radius: 20%;
+    border-radius: 10px;
     border: none;
 }
 
