@@ -17,5 +17,25 @@ header a {
 .login {
     display: flex;
     flex-direction: row;
+    align-items: center;
     gap: 30px;
+}
+
+.login h2 {
+    cursor: pointer;
+}
+
+#addTodo {
+    width: 150px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    font-size: 18px;
+    border: 1px solid rgb(161, 161, 161);
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+#addTodo:hover {
+    background-color: rgb(161, 161, 161);
 }
