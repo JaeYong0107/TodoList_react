@@ -1,6 +1,5 @@
 import { useSelector } from 'react-redux';
 
-import LoginModal from "../components/Login/LoginModal.jsx"
 import Sidebar from "../components/Sidebar/Sidebar.jsx"
 import TodoItem from "../components/TodoItem/TodoItem.jsx"
 
@@ -19,7 +18,6 @@ export default function Main() {
                     ))}
                 </ul>
             </div>
-            {/* <LoginModal /> */}
         </main>
     )
 }

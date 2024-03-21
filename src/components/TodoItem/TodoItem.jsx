@@ -1,7 +1,9 @@
 
 import './TodoItem.css';
 
-export default function TodoItem() {
+export default function TodoItem(props) {
+    const { id, category, title, startDate, endDate, todoList } = props
+
     return (
         <div className="todo-item-container">
             <div className="deadline">~ 마감 기한</div>
