@@ -6,9 +6,24 @@ const todoSlice = createSlice({
     reducers: {}
 })
 
+const modalSlice = createSlice({
+    name: 'modal',
+    initialState: { open: false },
+    reducers: {
+        openModal(state) {
+            state.open = true;
+        },
+        closeModal(state) {
+            state.open = false;
+        }
+    }
+})
+
 
 const store = configureStore({
-    reducer: { todo: todoSlice.reducer }
+    reducer: { todo: todoSlice.reducer, modal: modalSlice.reducer }
 })
+
+export const modalActions = modalSlice.actions;
 
 export default store;
