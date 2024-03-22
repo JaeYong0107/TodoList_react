@@ -1,4 +1,4 @@
-export async function fetchTodoData() {
+export async function getTodoData() {
     const response = await fetch('https://todo-e097a-default-rtdb.firebaseio.com/todo.json');
     const resData = await response.json();
 
@@ -9,7 +9,7 @@ export async function fetchTodoData() {
     return resData;
 }
 
-export async function putTodoData(data) {
+export async function sendTodoData(data) {
     const response = await fetch('https://todo-e097a-default-rtdb.firebaseio.com/todo.json', {
         method: 'PUT',
         headers: { 'content-type': 'application/json' },

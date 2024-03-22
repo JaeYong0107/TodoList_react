@@ -1,9 +1,14 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit';
+import { sendTodoData } from '../util/http';
+
 
 const todoSlice = createSlice({
     name: 'todo',
     initialState: { todoItems: [] },
     reducers: {
+        initialSet(state, action) {
+            state.todoItems = action.payload
+        },
         addTodoItem(state, action) {
             const newItem = action.payload;
             const existingItem = state.todoItems.find(item => item.id === newItem.id);
@@ -17,6 +22,13 @@ const todoSlice = createSlice({
                     todo: newItem.todo
                 })
             }
+
+            async function sendTodoItems() {
+                await sendTodoData(state.todoItems);
+            }
+
+            sendTodoItems();
+
 
         }
     }
