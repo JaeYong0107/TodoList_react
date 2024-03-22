@@ -2,8 +2,24 @@ import { configureStore, createSlice } from '@reduxjs/toolkit';
 
 const todoSlice = createSlice({
     name: 'todo',
-    initialState: { todoItems: [{ id: 't1', category: 'category', title: 'title', startDate: '2024-03-21', endDate: '2024-03-25', todoList: [] },] },
-    reducers: {}
+    initialState: { todoItems: [] },
+    reducers: {
+        addTodoItem(state, action) {
+            const newItem = action.payload;
+            const existingItem = state.todoItems.find(item => item.id === newItem.id);
+
+            if (!existingItem) {
+                state.todoItems.push({
+                    id: newItem.id,
+                    title: newItem.title,
+                    startDate: newItem.startDate,
+                    endDate: newItem.endDate,
+                    todo: newItem.todo
+                })
+            }
+
+        }
+    }
 })
 
 const modalSlice = createSlice({
@@ -24,6 +40,7 @@ const store = configureStore({
     reducer: { todo: todoSlice.reducer, modal: modalSlice.reducer }
 })
 
+export const todoActions = todoSlice.actions;
 export const modalActions = modalSlice.actions;
 
 export default store;
