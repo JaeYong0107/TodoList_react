@@ -41,7 +41,7 @@ export default function TodoEdit() {
         data.category = currentItem.category;
         console.log(data);
 
-        dispatch(todoActions.addTodoItem(data));
+        dispatch(todoActions.editTodoItem(data));
         navigate('/')
     }
 

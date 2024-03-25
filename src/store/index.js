@@ -65,7 +65,7 @@ const todoSlice = createSlice({
                 // 일치하지 않는 경우 현재 항목 그대로 유지
                 return item;
             });
-            console.log(updatedTodoItems);
+
             async function sendTodoItems() {
                 await sendTodoData(updatedTodoItems);
             }
