@@ -9,12 +9,16 @@ import { todoActions } from '../store/index.js';
 export default function Main() {
     const dispatch = useDispatch();
     const todoItems = useSelector(state => state.todo.todoItems);
-    console.log(todoItems);
+
     useEffect(() => {
         async function fetchTodo() {
             try {
                 const data = await getTodoData();
-                dispatch(todoActions.initialSet(data));
+                if (data === '' || data === null || data === undefined) {
+                    dispatch(todoActions.initialSet([]))
+                } else {
+                    dispatch(todoActions.initialSet(data))
+                };
             } catch (error) {
                 console.error(error);
             }

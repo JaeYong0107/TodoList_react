@@ -40,6 +40,14 @@ ul {
     align-items: center;
 }
 
+.detail-delete-box {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
 .detail-title {
     width: 60vw;
     text-align: center;
@@ -47,6 +55,7 @@ ul {
     background-color: #DDDDDD;
     border-radius: 10px;
     margin-top: 10px;
+    margin-left: 140px;
     position: relative;
 }
 
@@ -62,6 +71,12 @@ ul {
 
 .detail-title p {
     margin: 0;
+}
+
+.detail-delete-box button {
+    width: 50px;
+    height: 50px;
+    margin-left: 20px;
 }
 
 .detail-container progress {

@@ -8,10 +8,10 @@ export default function TodoItem(props) {
 
 
     return (
-        <div className="todo-item-container" onClick={() => navigate(`/${id}`)}>
+        <div className="todo-item-container" >
             <div className="deadline">~ {endDate}</div>
-            <button className='todo-item-edit'>Edit</button>
-            <h3>{title}</h3>
+            <button className='todo-item-edit' onClick={() => navigate(`/${id}/edit`)}>Edit</button>
+            <h3 onClick={() => navigate(`/${id}`)}>{title}</h3>
             <progress className='todo-item-progress' value='50' min='0' max='100' />
         </div>
     )
