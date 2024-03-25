@@ -18,7 +18,7 @@ export default function Header() {
             <div className="login">
                 <h2 onClick={openModal}>Login</h2>
                 <h2>Sign up</h2>
-                <button id='addTodo' onClick={() => navigate('edit')}>add Todo</button>
+                <button id='addTodo' onClick={() => navigate('new')}>add Todo</button>
             </div>
         </header >
     )

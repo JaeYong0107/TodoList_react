@@ -6,7 +6,6 @@ import Header from "../components/Header/Header.jsx";
 
 export default function RootLayout() {
     const open = useSelector(state => state.modal.open);
-    console.log(open)
     return (<>
         <LoginModal open={open} />
         <Header />

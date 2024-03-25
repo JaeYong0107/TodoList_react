@@ -17,7 +17,7 @@ export default function TodoEdit() {
 
         const fd = new FormData(e.target); //form 안의 name이 지정된 값들을 받아오기.
         const todoChannel = fd.getAll('todo'); // name이 todo인 데이터를 배열로 묶어오기
-        const todoItemId = Math.random() - 0.5; // item의 구별을 위한 id값 랜덤하게 지정
+        const todoItemId = (Math.random() - 0.5) + ''; // item의 구별을 위한 id값 랜덤하게 지정
         const data = Object.fromEntries(fd.entries()); // 받아온 값들을 객체로 묶어주기
         data.todo = todoChannel; // 배열로 묶은 todo를 객체에 추가하기
         data.id = todoItemId; // id도 추가

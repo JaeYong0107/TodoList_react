@@ -9,7 +9,7 @@ import { todoActions } from '../store/index.js';
 export default function Main() {
     const dispatch = useDispatch();
     const todoItems = useSelector(state => state.todo.todoItems);
-
+    console.log(todoItems);
     useEffect(() => {
         async function fetchTodo() {
             try {
@@ -29,7 +29,6 @@ export default function Main() {
             <Sidebar />
             <div className="todo-item-list-container">
                 <ul >
-                    {console.log(todoItems)}
                     {todoItems.map(item => (
                         <li className="todo-item-list" key={item.id}>
                             <TodoItem {...item} />

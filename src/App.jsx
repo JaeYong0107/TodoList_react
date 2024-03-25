@@ -13,9 +13,15 @@ function App() {
       element: <RootLayout />,
       children: [
         { index: true, element: <Main /> },
-        { path: 'detail', element: <TodoDetail /> },
-        { path: 'edit', element: <TodoEdit /> }
-      ]
+        {
+          path: ':itemId',
+          children: [
+            { index: true, element: <TodoDetail /> },
+            { path: 'edit', element: <TodoEdit /> }
+          ],
+        },
+        { path: 'new', element: <TodoEdit /> }, // 이거는 새로운 item을 만드는 화면인데, 그러면 new로 만들어줘야할까?
+      ]                                          // 화면구성은 똑같이 가져가고 싶은데 뭐가 효율적일까?
     }
   ])
 
