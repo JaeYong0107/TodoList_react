@@ -30,6 +30,10 @@
     border: none;
 }
 
+.todo-item-container h3 {
+    cursor: pointer;
+}
+
 .todo-item-progress {
     width: 589px;
     height: 42px;

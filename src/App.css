@@ -160,7 +160,9 @@ ul {
     width: 90%;
     height: 70%;
     background-color: white;
+    overflow: scroll;
 }
+
 
 .edit-todo {
     width: 80%;

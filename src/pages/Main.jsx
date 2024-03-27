@@ -1,33 +1,20 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { json, useLoaderData } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 import Sidebar from "../components/Sidebar/Sidebar.jsx"
 import TodoItem from "../components/TodoItem/TodoItem.jsx"
-import { useEffect } from 'react';
-import { getTodoData } from '../util/http.js';
-import { todoActions } from '../store/index.js';
-
 export default function Main() {
-    const dispatch = useDispatch();
-    const todoItems = useSelector(state => state.todo.todoItems);
-
+    const [loading, setLoading] = useState(true);
+    const todoItems = useLoaderData();
     useEffect(() => {
-        async function fetchTodo() {
-            try {
-                const data = await getTodoData();
-                if (data === '' || data === null || data === undefined) {
-                    dispatch(todoActions.initialSet([]))
-                } else {
-                    dispatch(todoActions.initialSet(data))
-                };
-            } catch (error) {
-                console.error(error);
-            }
+        if (todoItems) {
+            setLoading(false);
         }
+    }, [todoItems]);
 
-        fetchTodo();
-
-    }, [])
-
+    if (loading) {
+        return <div>Loading...</div>;
+    }
     return (
         <main>
             <Sidebar />
@@ -42,4 +29,14 @@ export default function Main() {
             </div>
         </main>
     )
+}
+
+export async function loader() {
+    const response = await fetch('https://todo-e097a-default-rtdb.firebaseio.com/todo.json');
+    const resData = await response.json();
+    if (!response.ok) {
+        return json({ message: 'todoItems를 가져올 수 없습니다.' }, { status: 500 })
+    }
+
+    return resData;
 }

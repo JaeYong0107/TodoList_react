@@ -4,13 +4,10 @@ import { sendTodoData } from '../util/http';
 
 const todoSlice = createSlice({
     name: 'todo',
-    initialState: { todoItems: [], currentId: 'currentId' },
+    initialState: { todoItems: [] },
     reducers: {
         initialSet(state, action) {
             state.todoItems = action.payload
-        },
-        setCurrentId(state, action) {
-            state.currentId = action.payload;
         },
         addTodoItem(state, action) {
             const newItem = action.payload;
@@ -19,11 +16,12 @@ const todoSlice = createSlice({
             if (!existingItem) {
                 state.todoItems.push({
                     id: newItem.id,
+                    category: newItem.category,
                     title: newItem.title,
                     startDate: newItem.startDate,
                     endDate: newItem.endDate,
                     todoList: newItem.todoList,
-                    category: newItem.category
+                    checkNum: 0
                 })
             }
 
@@ -45,8 +43,8 @@ const todoSlice = createSlice({
 
             sendTodoItems();
         },
-        editTodoItem(state, action) {
-            const currentId = state.currentId;
+        updateTodoItem(state, action) {
+            const currentId = action.payload.id;
             const updatedItem = action.payload; // 새로운 데이터로 업데이트할 항목
 
             // 새로운 상태 배열 생성
@@ -55,11 +53,12 @@ const todoSlice = createSlice({
                 if (item.id === currentId) {
                     return {
                         id: updatedItem.id,
+                        category: updatedItem.category,
                         title: updatedItem.title,
                         startDate: updatedItem.startDate,
                         endDate: updatedItem.endDate,
                         todoList: updatedItem.todoList,
-                        category: updatedItem.category
+                        checkNum: 0
                     };
                 }
                 // 일치하지 않는 경우 현재 항목 그대로 유지
@@ -72,11 +71,44 @@ const todoSlice = createSlice({
 
             sendTodoItems();
 
+
             // 새로운 상태 객체 반환
-            return {
-                ...state,
-                todoItems: updatedTodoItems
-            };
+            return { todoItems: updatedTodoItems };
+        },
+        checkTodoItem(state, action) {
+            const currentId = action.payload.id;
+            const num = action.payload.checkNum;
+            const curIndex = action.payload.index;
+
+            const updatedTodoItems = state.todoItems.map(item => {
+                if (item.id === currentId) {
+                    return {
+                        ...item,
+                        todoList: item.todoList.map((item, index) => {
+                            if (index === curIndex) {
+                                return {
+                                    ...item,
+                                    isCheck: !item.isCheck
+                                }
+                            }
+                            return item
+                        }),
+                        checkNum: num
+                    };
+
+                } console.log(item.checkNum)
+                return item;
+            });
+
+            async function sendTodoItems() {
+                await sendTodoData(updatedTodoItems);
+            }
+
+            sendTodoItems();
+
+
+            // 새로운 상태 객체 반환
+            return { todoItems: updatedTodoItems };
         },
     }
 })

@@ -10,7 +10,7 @@ export async function getTodoData() {
 }
 
 export async function sendTodoData(data) {
-    const response = await fetch('https://todo-e097a-default-rtdb.firebaseio.com/todo.json', {
+    const response = await fetch(`https://todo-e097a-default-rtdb.firebaseio.com/todo.json`, {
         method: 'PUT',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify(data)

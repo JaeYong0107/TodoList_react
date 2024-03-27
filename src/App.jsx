@@ -1,8 +1,8 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import RootLayout from './pages/RootLayout.jsx';
-import Main from './pages/Main.jsx';
-import TodoDetail from './pages/TodoDetail.jsx';
+import Main, { loader as mainLoader } from './pages/Main.jsx';
+import TodoDetail, { loader as detailLoader } from './pages/TodoDetail.jsx';
 import TodoEdit from './pages/TodoEdit.jsx';
 import TodoNew from './pages/TodoNew.jsx';
 import './App.css'
@@ -13,11 +13,20 @@ function App() {
       path: '/',
       element: <RootLayout />,
       children: [
-        { index: true, element: <Main /> },
+        {
+          index: true,
+          element: <Main />,
+          loader: mainLoader,
+        },
         {
           path: ':itemId',
+          id: 'current-item',
+          loader: detailLoader,
           children: [
-            { index: true, element: <TodoDetail /> },
+            {
+              index: true,
+              element: <TodoDetail />,
+            },
             { path: 'edit', element: <TodoEdit /> }
           ],
         },

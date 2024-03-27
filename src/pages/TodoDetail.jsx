@@ -1,26 +1,41 @@
-import { useNavigate, useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useRouteLoaderData, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import DetailItem from '../components/DetailItem/DetailItem.jsx';
 import { todoActions } from '../store/index.js';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function TodoDetail() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
-    const { itemId } = useParams();
-    const todoItems = useSelector(state => state.todo.todoItems);
-    const currentItem = todoItems.find((item) => item.id === itemId);
+    const [currentItem, setCurrentItem] = useState(useRouteLoaderData('current-item'));
+    const [progress, setProgress] = useState(currentItem.checkNum)
 
     useEffect(() => {
-        dispatch(todoActions.setCurrentId(itemId));
-    }, [])
+        dispatch(todoActions.updateTodoItem(currentItem));
+    }, [currentItem])
 
-    function deleteTodoItem() {
-        dispatch(todoActions.deleteTodoItem(itemId));
+    function deleteTodoItem() { // 삭제 버튼
+        dispatch(todoActions.deleteTodoItem(currentItem.id));
         navigate('/');
     }
+
+
+    function deleteTodo(curIndex) {
+        setCurrentItem(prevItem => {
+            const todoList = prevItem.todoList.filter((item, index) => index !== curIndex)
+            return {
+                ...prevItem,
+                todoList
+            }
+        });
+    }
+
+    function checkTodo(index, num) {
+        setProgress(progress + num)
+        dispatch(todoActions.checkTodoItem({ id: currentItem.id, index, checkNum: progress + num }))
+    }
+    console.log(currentItem.checkNum)
     return (
         <div className="detail-container">
             <div className='detail-delete-box'>
@@ -31,14 +46,25 @@ export default function TodoDetail() {
                 <button onClick={deleteTodoItem}>Delete</button>
                 <button onClick={() => navigate('edit')}>Edit</button>
             </div>
-            <progress value='50' min='0' max='100' />
+            {console.log(currentItem)}
+            <progress value={progress} min={0} max={currentItem.todoList.length} />
             <div className="detail-grid">
                 <ul>
-                    {currentItem.todoList.map((item) => (
-                        <li key={Math.random() - 0.5}><DetailItem item={item} /></li>
+                    {currentItem.todoList.map((item, index) => (
+                        <li key={index}><DetailItem item={item} curIndex={index} onDelete={deleteTodo} onCheck={checkTodo} /></li>
                     ))}
                 </ul>
             </div>
         </div>
     )
+}
+
+export async function loader({ request, params }) {
+    const itemId = params.itemId; // URL 파라미터에서 itemId를 가져옴
+    // itemId를 사용하여 데이터를 불러오는 비동기 작업 수행
+    const response = await fetch(`https://todo-e097a-default-rtdb.firebaseio.com/todo.json`);
+    const data = await response.json();
+    const item = data.find(item => item.id === itemId);
+
+    return item; // 불러온 데이터를 반환하여 컴포넌트로 전달
 }
