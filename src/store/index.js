@@ -18,7 +18,6 @@ const todoSlice = createSlice({
                     id: newItem.id,
                     category: newItem.category,
                     title: newItem.title,
-                    startDate: newItem.startDate,
                     endDate: newItem.endDate,
                     todoList: newItem.todoList,
                 })
@@ -54,7 +53,6 @@ const todoSlice = createSlice({
                         id: updatedItem.id,
                         category: updatedItem.category,
                         title: updatedItem.title,
-                        startDate: updatedItem.startDate,
                         endDate: updatedItem.endDate,
                         todoList: updatedItem.todoList,
                     };

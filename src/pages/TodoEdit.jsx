@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useRouteLoaderData } from "react-router-dom";
 
 import { todoActions } from '../store/index.js'
@@ -7,8 +7,9 @@ import { useState } from "react";
 
 export default function TodoEdit() {
     const dispatch = useDispatch();
-    const currentItem = useRouteLoaderData('current-item')
-    const [category, setCategory] = useState(currentItem.category)
+    const [currentItem, setCurrentItem] = useState(useSelector(state => state.todo.todoItems.find((item) =>
+        item.id === useRouteLoaderData('current-item'))));
+
     const [inputTodo, setInputTodo] = useState(currentItem.todoList.map((item, index) => (
         <li key={index}>
             <input className="edit-todo" type="text" name="todo" defaultValue={item.content} />
@@ -29,6 +30,12 @@ export default function TodoEdit() {
                 </li>)
             ]
         })
+        setCurrentItem(prevCurrentItem => {
+            return {
+                ...prevCurrentItem,
+                todoList: [...prevCurrentItem.todoList, { content: '', isCheck: false }]
+            }
+        })
     }
 
     function minusHandler(key) {
@@ -37,7 +44,12 @@ export default function TodoEdit() {
 
 
     function changeHandler(e) {
-        setCategory(e.target.value);
+        setCurrentItem(prevCurrentItem => {
+            return {
+                ...prevCurrentItem,
+                category: e.target.value
+            }
+        })
     }
 
     function submitHandler(e) {
@@ -51,8 +63,7 @@ export default function TodoEdit() {
             } else { return { content: item, isCheck: false } }
         });
         data.id = currentItem.id;
-        data.category = category;
-        console.log(data)
+        data.category = currentItem.category;
         dispatch(todoActions.updateTodoItem(data));
     }
 
@@ -60,14 +71,13 @@ export default function TodoEdit() {
         <div className="edit-container">
             <form className="edit-form" onSubmit={submitHandler}>
                 <div className="category-title-date">
-                    <select className="edit-category" value={category} onChange={changeHandler} style={{ backgroundImage: `url(${currentItem.category}-icon.png)` }}>
+                    <select className="edit-category" value={currentItem.category} onChange={changeHandler} style={{ backgroundImage: `url(${currentItem.category}-icon.png)` }}>
                         <option value='공부'>공부</option>
                         <option value='운동'>운동</option>
                         <option value='일'>일</option>
                         <option value='약속'>약속</option>
                     </select>
                     <input className="edit-title" type="text" name="title" defaultValue={currentItem.title} />
-                    <input className="edit-date" type="date" name="startDate" defaultValue={currentItem.startDate} />
                     <input className="edit-date" type="date" name="endDate" defaultValue={currentItem.endDate} />
                 </div>
                 <div className="edit-todo-list">

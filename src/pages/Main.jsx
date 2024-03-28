@@ -6,6 +6,8 @@ import TodoItem from "../components/TodoItem/TodoItem.jsx"
 export default function Main() {
     const [loading, setLoading] = useState(true);
     const todoItems = useLoaderData();
+    const sortedTodoItems = todoItems ? todoItems.sort((a, b) => new Date(a.endDate) - new Date(b.endDate)) : [];
+
     useEffect(() => {
         if (todoItems) {
             setLoading(false);
@@ -15,12 +17,13 @@ export default function Main() {
     if (loading) {
         return <div>Loading...</div>;
     }
+
     return (
         <main>
             <Sidebar />
             <div className="todo-item-list-container">
                 <ul >
-                    {todoItems.map(item => (
+                    {sortedTodoItems.map(item => (
                         <li className="todo-item-list" key={item.id}>
                             <TodoItem {...item} />
                         </li>

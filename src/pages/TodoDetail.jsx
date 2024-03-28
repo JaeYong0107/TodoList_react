@@ -1,17 +1,22 @@
 import { useRouteLoaderData, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import DetailItem from '../components/DetailItem/DetailItem.jsx';
 import { todoActions } from '../store/index.js';
+import calculateDateDifference from '../util/calculateDateDifference.js';
 import { useEffect, useState } from 'react';
 
 export default function TodoDetail() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const [currentItem, setCurrentItem] = useState(useRouteLoaderData('current-item'));
+    const [currentItem, setCurrentItem] = useState(useSelector(state => state.todo.todoItems.find((item) =>
+        item.id === useRouteLoaderData('current-item'))));
+
     const [progress, setProgress] = useState(currentItem.todoList.reduce((count, item) => {
         return item.isCheck ? count + 1 : count
     }, 0))
+
+    const remaingDate = calculateDateDifference(currentItem.endDate)
 
     useEffect(() => {
         dispatch(todoActions.updateTodoItem(currentItem));
@@ -47,18 +52,18 @@ export default function TodoDetail() {
             }
         })
     }
-    console.log(progress)
+
     return (
         <div className="detail-container">
             <div className='detail-delete-box'>
                 <div className="detail-title">
-                    <div>~ {currentItem.endDate}</div>
+                    <div>{remaingDate.days === 0 ? '오늘 까지' : remaingDate.days >= 0 ? `${remaingDate.days}일 남음` : '기한 마감!'}</div>
                     <p>{currentItem.title}</p>
                 </div>
                 <button onClick={deleteTodoItem}>Delete</button>
                 <button onClick={() => navigate('edit')}>Edit</button>
             </div>
-            {console.log(currentItem)}
+            {console.log(currentItem.todoList)}
             <progress value={progress} min={0} max={currentItem.todoList.length} />
             <div className="detail-grid">
                 <ul>
@@ -73,10 +78,6 @@ export default function TodoDetail() {
 
 export async function loader({ request, params }) {
     const itemId = params.itemId; // URL 파라미터에서 itemId를 가져옴
-    // itemId를 사용하여 데이터를 불러오는 비동기 작업 수행
-    const response = await fetch(`https://todo-e097a-default-rtdb.firebaseio.com/todo.json`);
-    const data = await response.json();
-    const item = data.find(item => item.id === itemId);
 
-    return item; // 불러온 데이터를 반환하여 컴포넌트로 전달
+    return itemId; // 불러온 데이터를 반환하여 컴포넌트로 전달
 }

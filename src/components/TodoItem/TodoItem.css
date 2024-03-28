@@ -25,9 +25,10 @@
     position: absolute;
     top: 20px;
     right: 12px;
-    background-color: #9CA1CF;
+    background-color: #9ca1cf9e;
     border-radius: 10px;
     border: none;
+    cursor: pointer;
 }
 
 .todo-item-container h3 {
@@ -44,4 +45,8 @@
 
 .todo-item-progress::-webkit-progress-bar {
     color: #9CA1CF;
+}
+
+.todo-item-edit:hover {
+    background-color: #9CA1CF;
 }
