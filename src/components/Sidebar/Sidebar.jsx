@@ -1,24 +1,29 @@
+import { useState } from 'react';
 
 import SidebarItem from '../SidebarItem/SidebarItem';
 import './Sidebar.css';
 
-export default function Sidebar() {
+export default function Sidebar({ todoItems }) {
+    const [isNavOpen, setIsNavOpen] = useState(false);
+
+    const toggleNav = () => {
+        setIsNavOpen(prevState => !prevState);
+    };
+
     return (
-        <nav>
+        <nav style={{ transform: `translateX(${isNavOpen ? '0%' : '-100%'})` }}>
             <div className='todo-list-container'>
                 <div className='todo-list-nav'>
-                    <ul>
-                        <li><SidebarItem /></li>
-                        <li><SidebarItem /></li>
-                        <li><SidebarItem /></li>
-                        <li><SidebarItem /></li>
-                        <li><SidebarItem /></li>
-                        <li><SidebarItem /></li>
-                        <li><SidebarItem /></li>
-                    </ul>
+                    <div>
+                        <ul>
+                            {todoItems.map((item) => (
+                                <li><SidebarItem {...item} /></li>
+                            ))}
+                        </ul>
+                    </div>
                 </div>
-                <button className='nav-button'><img src='다음-icon.svg' /></button>
+                <button className='nav-button' onClick={toggleNav}><img src='다음-icon.svg' /></button>
             </div>
         </nav>
-    )
+    );
 }

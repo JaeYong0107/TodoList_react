@@ -17,7 +17,6 @@ export default function TodoItem(props) {
             <button className='todo-item-edit' onClick={() => navigate(`/${id}/edit`)}>Edit</button>
             <h3 onClick={() => navigate(id)}>{title}</h3>
             <progress className='todo-item-progress' value={checkNum} min={0} max={todoList.length} />
-            { }
         </div>
     )
 }

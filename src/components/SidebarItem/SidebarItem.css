@@ -2,5 +2,11 @@
     width: 226px;
     height: 75px;
     background-color: #E1E1E1;
-    border-radius: 5%;
+    border-radius: 5px;
+}
+
+.sidebar-item h3 {
+    text-align: center;
+    line-height: 75px;
+    cursor: pointer;
 }

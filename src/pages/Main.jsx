@@ -24,7 +24,7 @@ export default function Main() {
 
     return (
         <main>
-            <Sidebar />
+            <Sidebar todoItems={sortedTodoItems} />
             <div className="todo-item-list-container">
                 <ul >
                     {sortedTodoItems.map(item => (
