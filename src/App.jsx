@@ -6,11 +6,13 @@ import TodoDetail, { loader as detailLoader } from './pages/TodoDetail.jsx';
 import TodoEdit from './pages/TodoEdit.jsx';
 import TodoNew from './pages/TodoNew.jsx';
 import './App.css'
+import Error from './components/Error/Error.jsx';
 
 function App() {
   const router = createBrowserRouter([
     {
       path: '/',
+      errorElement: <Error />,
       element: <RootLayout />,
       children: [
         {
