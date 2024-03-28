@@ -41,14 +41,18 @@ export default function TodoEdit() {
     }
 
     function submitHandler(e) {
-        e.preventDefault(); //브라우저의 기본 http 전송을 하지 않게 해줌.
-        const fd = new FormData(e.target); //form 안의 name이 지정된 값들을 받아오기.
-        const todoChannel = fd.getAll('todo'); // name이 todo인 데이터를 배열로 묶어오기
-        const data = Object.fromEntries(fd.entries()); // 받아온 값들을 객체로 묶어주기
-        data.todoList = todoChannel.map(item => { return { content: item, isCheck: false } }); // 배열로 묶은 todo를 객체에 추가하기
-        data.id = currentItem.id; // id도 추가
+        e.preventDefault();
+        const fd = new FormData(e.target);
+        const todoChannel = fd.getAll('todo');
+        const data = Object.fromEntries(fd.entries());
+        data.todoList = todoChannel.map((item, index) => {
+            if (index < currentItem.todoList.length) {
+                return { content: item, isCheck: currentItem.todoList[index].isCheck }
+            } else { return { content: item, isCheck: false } }
+        });
+        data.id = currentItem.id;
         data.category = category;
-
+        console.log(data)
         dispatch(todoActions.updateTodoItem(data));
     }
 

@@ -4,7 +4,10 @@ import './TodoItem.css';
 
 export default function TodoItem(props) {
     const navigate = useNavigate();
-    const { id, category, title, startDate, endDate, todoList, checkNum } = props
+    const { id, category, title, startDate, endDate, todoList } = props
+    const checkNum = todoList.reduce((count, item) => {
+        return item.isCheck ? count + 1 : count
+    }, 0)
 
     return (
         <div className="todo-item-container" >

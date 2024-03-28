@@ -9,7 +9,9 @@ export default function TodoDetail() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [currentItem, setCurrentItem] = useState(useRouteLoaderData('current-item'));
-    const [progress, setProgress] = useState(currentItem.checkNum)
+    const [progress, setProgress] = useState(currentItem.todoList.reduce((count, item) => {
+        return item.isCheck ? count + 1 : count
+    }, 0))
 
     useEffect(() => {
         dispatch(todoActions.updateTodoItem(currentItem));
@@ -31,11 +33,21 @@ export default function TodoDetail() {
         });
     }
 
-    function checkTodo(index, num) {
+    function checkTodo(curIndex, num) {
         setProgress(progress + num)
-        dispatch(todoActions.checkTodoItem({ id: currentItem.id, index, checkNum: progress + num }))
+        dispatch(todoActions.checkTodoItem({ id: currentItem.id, index: curIndex }))
+        setCurrentItem(prevItem => {
+            return {
+                ...prevItem,
+                todoList: prevItem.todoList.map((item, index) => {
+                    if (index === curIndex) {
+                        return { ...item, isCheck: !item.isCheck }
+                    } else { return item }
+                }),
+            }
+        })
     }
-    console.log(currentItem.checkNum)
+    console.log(progress)
     return (
         <div className="detail-container">
             <div className='detail-delete-box'>

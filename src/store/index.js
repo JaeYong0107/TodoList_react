@@ -21,7 +21,6 @@ const todoSlice = createSlice({
                     startDate: newItem.startDate,
                     endDate: newItem.endDate,
                     todoList: newItem.todoList,
-                    checkNum: 0
                 })
             }
 
@@ -58,7 +57,6 @@ const todoSlice = createSlice({
                         startDate: updatedItem.startDate,
                         endDate: updatedItem.endDate,
                         todoList: updatedItem.todoList,
-                        checkNum: 0
                     };
                 }
                 // 일치하지 않는 경우 현재 항목 그대로 유지
@@ -77,7 +75,6 @@ const todoSlice = createSlice({
         },
         checkTodoItem(state, action) {
             const currentId = action.payload.id;
-            const num = action.payload.checkNum;
             const curIndex = action.payload.index;
 
             const updatedTodoItems = state.todoItems.map(item => {
@@ -93,10 +90,9 @@ const todoSlice = createSlice({
                             }
                             return item
                         }),
-                        checkNum: num
                     };
 
-                } console.log(item.checkNum)
+                }
                 return item;
             });
 
