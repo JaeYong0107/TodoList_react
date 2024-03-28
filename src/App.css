@@ -147,12 +147,22 @@ ul {
     border-radius: 15px;
 }
 
-.edit-date {
+.end-label {
     width: 10%px;
     height: 60px;
     border: none;
     border-radius: 15px;
     margin-left: 3%;
+    text-align: center;
+    line-height: 60px;
+}
+
+.end-date {
+    width: 20%px;
+    height: 60px;
+    border: none;
+    border-radius: 15px;
+    margin-left: 2%;
     text-align: center;
 }
 

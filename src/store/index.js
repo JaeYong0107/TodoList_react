@@ -8,6 +8,7 @@ const todoSlice = createSlice({
     reducers: {
         initialSet(state, action) {
             state.todoItems = action.payload
+            console.log(action.payload)
         },
         addTodoItem(state, action) {
             const newItem = action.payload;

@@ -1,21 +1,21 @@
 import { useRouteLoaderData, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { todoActions } from '../store/index.js';
 
 import DetailItem from '../components/DetailItem/DetailItem.jsx';
-import { todoActions } from '../store/index.js';
 import calculateDateDifference from '../util/calculateDateDifference.js';
-import { useEffect, useState } from 'react';
 
 export default function TodoDetail() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [currentItem, setCurrentItem] = useState(useSelector(state => state.todo.todoItems.find((item) =>
         item.id === useRouteLoaderData('current-item'))));
-
+    console.log(useSelector(state => state.todo.todoItems))
     const [progress, setProgress] = useState(currentItem.todoList.reduce((count, item) => {
         return item.isCheck ? count + 1 : count
     }, 0))
-
+    console.log(useSelector(state => state.todo.todoItems))
     const remaingDate = calculateDateDifference(currentItem.endDate)
 
     useEffect(() => {

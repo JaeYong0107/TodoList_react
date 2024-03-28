@@ -62,7 +62,8 @@ export default function TodoNew() {
                         <option value='약속'>약속</option>
                     </select>
                     <input className="edit-title" type="text" name="title" placeholder="제목을 입력해주세요." />
-                    <input className="edit-date" type="date" name="endDate" placeholder="마감 날짜" />
+                    <label className="end-label">마감 날짜</label>
+                    <input className="end-date" type="date" name="endDate" placeholder="마감 날짜" />
                 </div>
                 <div className="edit-todo-list">
                     <ul>

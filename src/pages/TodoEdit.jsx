@@ -78,6 +78,7 @@ export default function TodoEdit() {
                         <option value='약속'>약속</option>
                     </select>
                     <input className="edit-title" type="text" name="title" defaultValue={currentItem.title} />
+                    <label className="end-label">마감 날짜</label>
                     <input className="edit-date" type="date" name="endDate" defaultValue={currentItem.endDate} />
                 </div>
                 <div className="edit-todo-list">
