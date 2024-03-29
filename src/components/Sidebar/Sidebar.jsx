@@ -24,7 +24,7 @@ export default function Sidebar({ todoItems }) {
                         </ul>
                     </div>
                 </div>
-                <button className='nav-button' onClick={toggleNav}><img src='다음-icon.svg' /></button>
+                <button className='nav-button' onClick={toggleNav}><img src={`${isNavOpen ? '이전' : '다음'}-icon.svg`} /></button>
             </div>
         </nav>
     );
