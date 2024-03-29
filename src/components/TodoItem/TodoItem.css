@@ -33,14 +33,15 @@
 
 .todo-item-container h3 {
     cursor: pointer;
+    height: 80%;
 }
 
 .todo-item-progress {
-    width: 589px;
+    width: 90%;
     height: 42px;
     position: absolute;
     bottom: 10px;
-    left: 1vw;
+    left: 3vw;
 }
 
 .todo-item-progress::-webkit-progress-bar {

@@ -13,20 +13,30 @@ ul {
 }
 
 .todo-item-list-container {
+    width: 100%;
     height: 100%;
     overflow: scroll;
-    padding-left: 3%;
 }
 
 .todo-item-list-container::-webkit-scrollbar {
     display: none;
 }
 
-.todo-item-list-container ul {
+.close {
     display: grid;
     grid-template-columns: 618px 618px;
     grid-template-rows: 271px;
     justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.open {
+    display: grid;
+    grid-template-columns: 900px;
+    grid-template-rows: 271px;
+    justify-content: center;
+    align-items: center;
     gap: 20px;
 }
 

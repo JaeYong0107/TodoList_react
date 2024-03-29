@@ -1,8 +1,11 @@
  nav {
-     width: 250px;
+     width: 300px;
      height: 100%;
-     translate: 0%;
      z-index: 1;
+ }
+
+ #nav {
+     width: 0;
  }
 
  .todo-list-container {

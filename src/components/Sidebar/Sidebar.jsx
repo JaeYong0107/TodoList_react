@@ -1,23 +1,25 @@
-import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { sidebarActions } from '../../store';
 
 import SidebarItem from '../SidebarItem/SidebarItem';
 import './Sidebar.css';
 
 export default function Sidebar({ todoItems }) {
-    const [isNavOpen, setIsNavOpen] = useState(false);
+    const dispatch = useDispatch();
+    const isNavOpen = useSelector(state => state.sidebar.open)
 
     const toggleNav = () => {
-        setIsNavOpen(prevState => !prevState);
+        dispatch(sidebarActions.toggleButton());
     };
 
     return (
-        <nav style={{ transform: `translateX(${isNavOpen ? '0%' : '-100%'})` }}>
+        <nav style={{ transform: `translateX(${isNavOpen ? '0%' : '-100%'})` }} id={isNavOpen ? '' : 'nav'}>
             <div className='todo-list-container'>
                 <div className='todo-list-nav'>
                     <div>
                         <ul>
-                            {todoItems.map((item) => (
-                                <li><SidebarItem {...item} /></li>
+                            {todoItems.map((item, index) => (
+                                <li key={index}><SidebarItem {...item} /></li>
                             ))}
                         </ul>
                     </div>

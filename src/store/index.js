@@ -8,7 +8,6 @@ const todoSlice = createSlice({
     reducers: {
         initialSet(state, action) {
             state.todoItems = action.payload
-            console.log(action.payload)
         },
         addTodoItem(state, action) {
             const newItem = action.payload;
@@ -121,12 +120,22 @@ const modalSlice = createSlice({
     }
 })
 
+const sidebarSlice = createSlice({
+    name: 'sidebar',
+    initialState: { open: false },
+    reducers: {
+        toggleButton(state) {
+            state.open = !state.open
+        },
+    }
+})
 
 const store = configureStore({
-    reducer: { todo: todoSlice.reducer, modal: modalSlice.reducer }
+    reducer: { todo: todoSlice.reducer, modal: modalSlice.reducer, sidebar: sidebarSlice.reducer }
 })
 
 export const todoActions = todoSlice.actions;
 export const modalActions = modalSlice.actions;
+export const sidebarActions = sidebarSlice.actions;
 
 export default store;
