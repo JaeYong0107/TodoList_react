@@ -109,13 +109,19 @@ const todoSlice = createSlice({
 
 const modalSlice = createSlice({
     name: 'modal',
-    initialState: { open: false },
+    initialState: { isOpenLogin: false, isOpenSignUp: false },
     reducers: {
-        openModal(state) {
-            state.open = true;
+        openLoginModal(state) {
+            state.isOpenLogin = true;
         },
-        closeModal(state) {
-            state.open = false;
+        closeLoginModal(state) {
+            state.isOpenLogin = false;
+        },
+        openSignUpModal(state) {
+            state.isOpenSignUp = true;
+        },
+        closeSignUpModal(state) {
+            state.isOpenSignUp = false;
         }
     }
 })
@@ -127,6 +133,14 @@ const sidebarSlice = createSlice({
         toggleButton(state) {
             state.open = !state.open
         },
+    }
+})
+
+const loginSlice = createSlice({
+    name: 'login',
+    initialState: { currentUser: { id: '', password: '', name: '' }, isLogin: false },
+    reducers: {
+        login() { }
     }
 })
 

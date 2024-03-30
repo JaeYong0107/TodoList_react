@@ -8,16 +8,20 @@ export default function Header() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    function openModal() {
-        dispatch(modalActions.openModal());
+    function openLoginModal() {
+        dispatch(modalActions.openLoginModal());
+    }
+
+    function openSignUpModal() {
+        dispatch(modalActions.openSignUpModal());
     }
 
     return (
         <header>
             <Link to='/'>Todo</Link>
             <div className="login">
-                <h2 onClick={openModal}>Login</h2>
-                <h2>Sign up</h2>
+                <h2 onClick={openLoginModal}>Login</h2>
+                <h2 onClick={openSignUpModal}>Sign up</h2>
                 <button id='addTodo' onClick={() => navigate('new')}>add Todo</button>
             </div>
         </header >

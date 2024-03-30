@@ -4,30 +4,30 @@ import { useDispatch } from 'react-redux';
 import './LoginModal.css';
 import { modalActions } from '../../store';
 
-export default function LoginModal({ open }) {
-    const login = useRef();
+export default function SignUpModal({ open }) {
+    const signUp = useRef();
     const dispatch = useDispatch();
 
     useEffect(() => {
         if (open) {
-            login.current.showModal();
+            signUp.current.showModal();
         } else {
-            login.current.close();
+            signUp.current.close();
         }
     }, [open])
 
     function closeModal() {
-        dispatch(modalActions.closeLoginModal())
+        dispatch(modalActions.closeSignUpModal())
     }
 
     return (
-        <dialog ref={login}>
+        <dialog ref={signUp}>
             <div className='dialog'>
                 <h1>Todo App</h1>
                 <form>
                     <input type="texr" placeholder="ID를 입력하세요." />
                     <input type="texr" placeholder="PASSWORD를 입력하세요." />
-                    <button onClick={closeModal}>Log In</button>
+                    <button onClick={closeModal}>Sign Up</button>
                 </form>
             </div>
         </dialog>

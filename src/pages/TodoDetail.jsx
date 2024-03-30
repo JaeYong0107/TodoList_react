@@ -9,13 +9,12 @@ import calculateDateDifference from '../util/calculateDateDifference.js';
 export default function TodoDetail() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const [currentItem, setCurrentItem] = useState(useSelector(state => state.todo.todoItems.find((item) =>
-        item.id === useRouteLoaderData('current-item'))));
-    console.log(useSelector(state => state.todo.todoItems))
+    const todoItems = useSelector(state => state.todo.todoItems);
+    const [currentItem, setCurrentItem] = useState(todoItems.find((item) =>
+        item.id === useRouteLoaderData('current-item')));
     const [progress, setProgress] = useState(currentItem.todoList.reduce((count, item) => {
         return item.isCheck ? count + 1 : count
     }, 0))
-    console.log(useSelector(state => state.todo.todoItems))
     const remaingDate = calculateDateDifference(currentItem.endDate)
 
     useEffect(() => {
