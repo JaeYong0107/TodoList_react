@@ -6,13 +6,16 @@ import SignUpModal from '../components/Login/SignUpModal.jsx';
 import Header from "../components/Header/Header.jsx";
 import { getUsersInfo } from "../util/http.js";
 import { loginActions } from "../store/index.js";
+import { useEffect } from "react";
 
 export default function RootLayout() {
     const dispatch = useDispatch();
     const openLogin = useSelector(state => state.modal.isOpenLogin);
     const openSignUp = useSelector(state => state.modal.isOpenSignUp);
     const users = useLoaderData();
-    dispatch(loginActions.initialSet(users));
+    useEffect(() => {
+        dispatch(loginActions.initialSet(users));
+    }, [dispatch, users])
     return (<>
         <SignUpModal open={openSignUp} />
         <LoginModal open={openLogin} users={users} />
