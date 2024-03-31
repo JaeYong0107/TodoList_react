@@ -1,5 +1,5 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit';
-import { sendTodoData } from '../util/http';
+import { sendTodoData, sendUserInfo } from '../util/http';
 
 
 const todoSlice = createSlice({
@@ -140,6 +140,9 @@ const loginSlice = createSlice({
     name: 'login',
     initialState: { usersInfo: [], currentUser: { id: '', password: '', name: '' }, isLogin: false },
     reducers: {
+        initialSet(state, action) {
+            state.usersInfo = action.payload;
+        },
         signUp(state, action) {
             const newUserinfo = action.payload;
             const existingInfo = state.usersInfo.find(info => (info.id === newUserinfo.id && info.password === newUserinfo.password))
@@ -155,12 +158,11 @@ const loginSlice = createSlice({
                 throw new Error('이미 존재하는 유저 정보 입니다.')
             }
 
-            console.log(state.usersInfo)
-            async function sendUserInfo() {
+            async function sendInfo() {
                 await sendUserInfo(state.usersInfo);
             }
 
-            sendUserInfo();
+            sendInfo();
         },
         login(state, action) {
             // users서버에 있는 id와 password가 일치하는게 있다면 승인.

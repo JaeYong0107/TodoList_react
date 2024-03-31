@@ -28,12 +28,6 @@ export default function SignUpModal({ open }) {
         const data = Object.fromEntries(fd.entries()); //{id:id, password:password, name:name}
 
         dispatch(loginActions.signUp(data));
-
-        async function sendUserInfo() {
-            await sendUserInfo(data);
-        }
-
-        sendUserInfo();
     }
 
     return (
