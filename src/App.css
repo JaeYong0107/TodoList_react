@@ -85,6 +85,13 @@ ul {
     right: 5px;
 }
 
+.detail-delete-box>button {
+    background-color: white;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+}
+
 .detail-title p {
     margin: 0;
 }
