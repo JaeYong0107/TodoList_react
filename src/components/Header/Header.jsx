@@ -17,13 +17,18 @@ export default function Header() {
         dispatch(modalActions.openSignUpModal());
     }
 
+    function logout() {
+        navigate('/')
+        dispatch(loginActions.logout())
+    }
+
     return (
         <header>
             <Link to='/'>Todo</Link>
             <div className="login">
                 {isLogin && <>
                     <h4>{currentUser.name}님 반갑습니다.</h4>
-                    <h2 onClick={() => dispatch(loginActions.logout())}>Logout</h2>
+                    <h2 onClick={logout}>Logout</h2>
                 </>}
                 {!isLogin && <>
                     <h2 onClick={openLoginModal}>Login</h2>

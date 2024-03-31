@@ -62,7 +62,6 @@ export default function TodoDetail() {
                 <button onClick={deleteTodoItem}>Delete</button>
                 <button onClick={() => navigate('edit')}>Edit</button>
             </div>
-            {console.log(currentItem.todoList)}
             <progress value={progress} min={0} max={currentItem.todoList.length} />
             <div className="detail-grid">
                 <ul>
