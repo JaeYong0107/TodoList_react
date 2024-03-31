@@ -12,6 +12,7 @@ header a {
     color: white;
     text-decoration: none;
     text-align: center;
+    line-height: 70px;
 }
 
 .login {
@@ -37,5 +38,5 @@ header a {
 }
 
 #addTodo:hover {
-    background-color: rgb(161, 161, 161);
+    background-color: rgb(198, 198, 198);
 }

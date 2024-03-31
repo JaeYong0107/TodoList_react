@@ -1,49 +1,82 @@
- nav {
-     width: 300px;
-     height: 100%;
-     z-index: 1;
- }
+@keyframes moveLeftRight {
+    0% {
+        transform: translateX(2px);
+    }
 
- #nav {
-     width: 0;
- }
+    /* 시작 지점 */
 
- .todo-list-container {
-     width: 100%;
-     height: 100%;
-     left: -1px;
-     border-right: 1px solid #8c8c8c;
-     overflow: scroll;
- }
+    50% {
+        transform: translateX(0);
+    }
 
- .todo-list-container::-webkit-scrollbar {
-     display: none;
- }
+    100% {
+        transform: translateX(-2px);
+    }
 
- .todo-list-nav ul {
-     display: flex;
-     flex-direction: column;
-     align-items: center;
-     padding: 0;
- }
+    /* 다시 원래 위치로 복귀 */
+}
+
+nav {
+    width: 300px;
+    height: 100%;
+    z-index: 1;
+}
+
+#nav {
+    width: 0;
+}
+
+.todo-list-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    left: -1px;
+    border-right: 1px solid #8c8c8c;
+    overflow: scroll;
+}
+
+.todo-list-text {
+    text-align: center;
+    width: 90%;
+    color: #5b5b5b;
+    border-bottom: 1px solid #8c8c8c;
+}
+
+.todo-list-container::-webkit-scrollbar {
+    display: none;
+}
+
+.todo-list-nav ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+}
 
 
- .nav-button {
-     display: block;
-     width: 47px;
-     height: 40px;
-     background-color: #9CA1CF;
-     border: none;
-     border-radius: 0 10% 10% 0;
-     position: fixed;
-     right: -47px;
-     top: 10px;
-     z-index: 1;
-     cursor: pointer;
- }
+.nav-button {
+    display: block;
+    width: 47px;
+    height: 40px;
+    background-color: #9CA1CF;
+    border: none;
+    border-radius: 0 10% 10% 0;
+    position: fixed;
+    right: -47px;
+    top: 10px;
+    z-index: 1;
+    cursor: pointer;
+}
 
- .nav-button img {
-     width: 32px;
-     height: 32px;
-     text-align: center;
- }
+.nav-button img {
+    width: 32px;
+    height: 32px;
+    text-align: center;
+
+}
+
+.nav-button img:hover {
+    animation: moveLeftRight 0.7s infinite;
+}

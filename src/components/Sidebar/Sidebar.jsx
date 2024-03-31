@@ -15,6 +15,9 @@ export default function Sidebar({ todoItems }) {
     return (
         <nav style={{ transform: `translateX(${isNavOpen ? '0%' : '-100%'})` }} id={isNavOpen ? '' : 'nav'}>
             <div className='todo-list-container'>
+                <div className='todo-list-text'>
+                    <h1>TodoList</h1>
+                </div>
                 <div className='todo-list-nav'>
                     <div>
                         <ul>
