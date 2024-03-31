@@ -1,11 +1,11 @@
-import { json, useLoaderData } from 'react-router-dom';
+import { useLoaderData } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { todoActions } from '../store/index.js';
 import Sidebar from "../components/Sidebar/Sidebar.jsx"
 import TodoItem from "../components/TodoItem/TodoItem.jsx"
-import { getTodoData } from '../util/http.js';
+import { getTodoData, getUsersInfo } from '../util/http.js';
 
 export default function Main() {
     const dispatch = useDispatch();
@@ -13,7 +13,8 @@ export default function Main() {
     const todoItems = useLoaderData();
     const sortedTodoItems = todoItems ? [...todoItems].sort((a, b) => new Date(a.endDate) - new Date(b.endDate)) : [];
     const isOpen = useSelector(state => state.sidebar.open);
-
+    const isLogin = useSelector(state => state.login.isLogin);
+    console.log(isLogin)
     useEffect(() => {
         if (todoItems) {
             setLoading(false);
@@ -44,6 +45,5 @@ export default function Main() {
 }
 export async function loader() {
     const data = await getTodoData();
-
     return data;
 }

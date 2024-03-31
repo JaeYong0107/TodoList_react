@@ -10,7 +10,7 @@ export async function getTodoData() {
 }
 
 export async function sendTodoData(data) {
-    const response = await fetch(`https://todo-e097a-default-rtdb.firebaseio.com/todo.json`, {
+    const response = await fetch('https://todo-e097a-default-rtdb.firebaseio.com/todo.json', {
         method: 'PUT',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify(data)
@@ -22,7 +22,7 @@ export async function sendTodoData(data) {
 }
 
 export async function getUsersInfo() {
-    const response = await fetch(`https://todo-e097a-default-rtdb.firebaseio.com/users.json`);
+    const response = await fetch('https://todo-e097a-default-rtdb.firebaseio.com/users.json');
     const resData = await response.json();
 
     if (!response.ok) {
@@ -32,7 +32,7 @@ export async function getUsersInfo() {
 }
 
 export async function sendUserInfo(data) {
-    const response = await fetch(`https://todo-e097a-default-rtdb.firebaseio.com/users.json`, {
+    const response = await fetch('https://todo-e097a-default-rtdb.firebaseio.com/users.json', {
         method: 'PUT',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify(data)

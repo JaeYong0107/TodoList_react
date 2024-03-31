@@ -138,18 +138,49 @@ const sidebarSlice = createSlice({
 
 const loginSlice = createSlice({
     name: 'login',
-    initialState: { currentUser: { id: '', password: '', name: '' }, isLogin: false },
+    initialState: { usersInfo: [], currentUser: { id: '', password: '', name: '' }, isLogin: false },
     reducers: {
-        login() { }
+        signUp(state, action) {
+            const newUserinfo = action.payload;
+            const existingInfo = state.usersInfo.find(info => (info.id === newUserinfo.id && info.password === newUserinfo.password))
+
+            if (!existingInfo) {
+                state.usersInfo.push({
+                    id: newUserinfo.id,
+                    password: newUserinfo.password,
+                    name: newUserinfo.name,
+                })
+                console.log(newUserinfo)
+            } else {
+                throw new Error('이미 존재하는 유저 정보 입니다.')
+            }
+
+            console.log(state.usersInfo)
+            async function sendUserInfo() {
+                await sendUserInfo(state.usersInfo);
+            }
+
+            sendUserInfo();
+        },
+        login(state, action) {
+            // users서버에 있는 id와 password가 일치하는게 있다면 승인.
+            state.isLogin = true;
+            state.currentUser = action.payload;
+        },
+        logout(state, action) {
+            state.isLogin = false;
+            state.currentUser = { id: '', password: '', name: '' };
+        }
     }
 })
 
 const store = configureStore({
-    reducer: { todo: todoSlice.reducer, modal: modalSlice.reducer, sidebar: sidebarSlice.reducer }
+    reducer: { todo: todoSlice.reducer, modal: modalSlice.reducer, sidebar: sidebarSlice.reducer, login: loginSlice.reducer }
 })
 
 export const todoActions = todoSlice.actions;
 export const modalActions = modalSlice.actions;
 export const sidebarActions = sidebarSlice.actions;
+export const loginActions = loginSlice.actions;
 
 export default store;

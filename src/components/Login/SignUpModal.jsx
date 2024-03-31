@@ -2,7 +2,8 @@ import { useRef, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import './LoginModal.css';
-import { modalActions } from '../../store';
+import { loginActions, modalActions } from '../../store';
+import { sendUserInfo } from '../../util/http';
 
 export default function SignUpModal({ open }) {
     const signUp = useRef();
@@ -20,14 +21,30 @@ export default function SignUpModal({ open }) {
         dispatch(modalActions.closeSignUpModal())
     }
 
+    function submitHandler(e) {
+        e.preventDefault();
+
+        const fd = new FormData(e.target);
+        const data = Object.fromEntries(fd.entries()); //{id:id, password:password, name:name}
+
+        dispatch(loginActions.signUp(data));
+
+        async function sendUserInfo() {
+            await sendUserInfo(data);
+        }
+
+        sendUserInfo();
+    }
+
     return (
         <dialog ref={signUp}>
             <div className='dialog'>
                 <h1>Todo App</h1>
-                <form>
-                    <input type="texr" placeholder="ID를 입력하세요." />
-                    <input type="texr" placeholder="PASSWORD를 입력하세요." />
-                    <button onClick={closeModal}>Sign Up</button>
+                <form onSubmit={submitHandler}>
+                    <input type='text' name='name' placeholder='이름을 입력해주세요.' />
+                    <input type="text" name='id' placeholder="ID를 입력하세요." />
+                    <input type="text" name='password' placeholder="PASSWORD를 입력하세요." />
+                    <button type='submit' onClick={closeModal}>Sign Up</button>
                 </form>
             </div>
         </dialog>

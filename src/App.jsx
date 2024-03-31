@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-import RootLayout from './pages/RootLayout.jsx';
+import RootLayout, { loader as rootLoader } from './pages/RootLayout.jsx';
 import Main, { loader as mainLoader } from './pages/Main.jsx';
 import TodoDetail, { loader as detailLoader } from './pages/TodoDetail.jsx';
 import TodoEdit from './pages/TodoEdit.jsx';
@@ -14,6 +14,7 @@ function App() {
       path: '/',
       errorElement: <Error />,
       element: <RootLayout />,
+      loader: rootLoader,
       children: [
         {
           index: true,
