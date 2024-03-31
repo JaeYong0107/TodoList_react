@@ -31,7 +31,7 @@ export default function SignUpModal({ open }) {
     }
 
     return (
-        <dialog ref={signUp}>
+        <dialog ref={signUp} onClose={closeModal}>
             <div className='dialog'>
                 <h1>Todo App</h1>
                 <form onSubmit={submitHandler}>

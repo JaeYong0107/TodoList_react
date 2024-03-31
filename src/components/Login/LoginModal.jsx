@@ -39,7 +39,7 @@ export default function LoginModal({ open, users }) {
     }
 
     return (
-        <dialog ref={login}>
+        <dialog ref={login} onClose={closeModal}>
             <div className='dialog'>
                 <h1>Todo App</h1>
                 <form onSubmit={submitHandler}>
