@@ -91,7 +91,20 @@ ul {
 
 .detail-container progress {
     width: 60vw;
-    height: 50px;
+    height: 25px;
+    margin-top: 10px;
+    background-color: #9CA1CF;
+    border-radius: 15px;
+}
+
+.detail-container progress::-webkit-progress-value {
+    background-color: #9CA1CF;
+    border-radius: 15px;
+}
+
+.detail-container progress::-webkit-progress-bar {
+    background-color: lightgray;
+    border-radius: 15px;
 }
 
 .detail-grid ul {
