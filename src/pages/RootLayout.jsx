@@ -13,9 +13,11 @@ export default function RootLayout() {
     const openLogin = useSelector(state => state.modal.isOpenLogin);
     const openSignUp = useSelector(state => state.modal.isOpenSignUp);
     const users = useLoaderData();
+
     useEffect(() => {
         dispatch(loginActions.initialSet(users));
     }, [dispatch, users])
+
     return (<>
         <SignUpModal open={openSignUp} />
         <LoginModal open={openLogin} users={users} />
