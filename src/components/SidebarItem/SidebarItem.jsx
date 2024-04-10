@@ -1,16 +1,18 @@
 import { useNavigate } from 'react-router-dom';
 
-import calculateDateDifference from '../../util/calculateDateDifference.js'
+// import calculateDateDifference from '../../util/calculateDateDifference.js'
 import './SidebarItem.css';
 import { useSelector } from 'react-redux';
 
 export default function SidebarItem(props) {
     const navigate = useNavigate();
-    const { id, category, title, endDate, todoList } = props;
-    const remaingDate = calculateDateDifference(endDate);
-    const checkNum = todoList.reduce((count, item) => {
-        return item.isCheck ? count + 1 : count
-    }, 0)
+    const { id, title,
+        //  endDate, todoList 
+        } = props;
+    // const remaingDate = calculateDateDifference(endDate);
+    // const checkNum = todoList.reduce((count, item) => {
+    //     return item.isCheck ? count + 1 : count
+    // }, 0)
     const isLogin = useSelector(state => state.login.isLogin)
 
     return (

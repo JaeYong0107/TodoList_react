@@ -169,7 +169,7 @@ const loginSlice = createSlice({
             state.isLogin = true;
             state.currentUser = action.payload;
         },
-        logout(state, action) {
+        logout(state) {
             state.isLogin = false;
             state.currentUser = { id: '', password: '', name: '' };
         }

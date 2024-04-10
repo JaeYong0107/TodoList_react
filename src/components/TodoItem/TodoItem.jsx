@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 
 export default function TodoItem(props) {
     const navigate = useNavigate();
-    const { id, category, title, endDate, todoList } = props;
+    const { id,title, endDate, todoList } = props;
     const remaingDate = calculateDateDifference(endDate);
     const checkNum = todoList.reduce((count, item) => {
         return item.isCheck ? count + 1 : count

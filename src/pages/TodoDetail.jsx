@@ -74,7 +74,7 @@ export default function TodoDetail() {
     )
 }
 
-export async function loader({ request, params }) {
+export async function loader({ params }) {
     const itemId = params.itemId; // URL 파라미터에서 itemId를 가져옴
 
     return itemId; // 불러온 데이터를 반환하여 컴포넌트로 전달
